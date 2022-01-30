@@ -3,7 +3,9 @@ import './Form.css';
 
 const Form = () => {
   return (
-    <div>Nice</div>
+    <form className="race-time-form">
+      <div className="race-time">Race Time</div>
+    </form>
   )
 }
 

@@ -5,9 +5,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  width: auto;
+  display: flex;
+  justify-content: center;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+
+@font-face {
+  font-family: 'ProximaNova-Regular';
+  src: local('ProximaNova-Regular'), url(./fonts/ProximaNova-Regular.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'ProximaNova-Bold';
+  font-weight: 900;
+  src: local('ProximaNova-Bold'), url(./fonts/ProximaNova-Bold.otf) format('opentype');
 }
