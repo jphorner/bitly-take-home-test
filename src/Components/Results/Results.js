@@ -3,7 +3,11 @@ import './Results.css';
 
 const Results = () => {
   return (
-    <div>Results</div>
+    <div className="results-container">
+      <h4 className="results-header">Results</h4>
+      <section className="results">
+      </section>
+    </div>
   )
 }
 

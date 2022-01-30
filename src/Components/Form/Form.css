@@ -1,11 +1,11 @@
 .form-container {
   text-align: left;
-  padding: 3.7% 3.2% 3.7% 3.2%;
+  padding: 3.7% 3.2% .8% 3.2%;
   color: #35383B;
 }
 
 form {
-  min-height: 23.3vh;
+  height: 21.5vh;
   display: block;
   padding: .8vh 0vh .8vh 0vh;
 }
