@@ -13,34 +13,35 @@ class App extends Component {
   }
 
   calculateTime = (hour, minutes, day, period) => {
-    let totalTime = minutes;
+    let totalTime = 0;
+
     if (period === 'AM' && day === 1) {
-      totalTime += (hour * 60);
-    } else if (period === 'PM' && day === 1) {
-      if (hour === 12) {
-        totalTime += (hour * 60);
-      } else {
-        totalTime += (hour + 12) * 60;
-      }
+      totalTime += hour;
+    } else if (period === 'PM' && day === 1 && hour !== 12) {
+      totalTime += hour + 12;
+    } else if (period === 'PM' && day === 1 && hour === 12) {
+      totalTime += hour;
     };
 
-    if (period === 'AM' && day === 2) {
-      if (hour === 12) {
-        totalTime += (24 * 60);
-      } else {
-        totalTime += (24 * 60) + (hour * 60);
-      }
-    } else if (period === 'PM' && day === 2) {
-      if (hour === 12) {
-        totalTime += (36 * 60);
-      } else {
-        totalTime += (36 * 60) + (hour * 60);
-      }
+    if (period === 'AM' && day >= 2 && hour !== 12) {
+      totalTime += 24 + hour;
+    } else if (period === 'AM' && day >= 2 && hour === 12) {
+      totalTime += 24;
+    } else if (period === 'PM' && day >= 2 && hour === 12) {
+      totalTime += 36;
+    } else if (period === 'PM' && day >= 2 && hour !== 12) {
+      totalTime += 36 + hour;
     };
 
+    if (day > 2) {
+      totalTime += 24 * (day - 2);
+    }
+
+    totalTime = totalTime * 60;
+    totalTime += minutes;
     totalTime -= 480;
     console.log(totalTime);
-    this.setState({ times: totalTime })
+    this.setState({ times: [...this.state.times, totalTime] })
   }
 
   submitTime = (event) => {
@@ -52,10 +53,6 @@ class App extends Component {
       let splitMinutes = parseInt(splitInput[0].split(':')[1].split(' ')[0]);
       let splitDay = parseInt(splitInput[1].split(' DAY ')[1]);
       let splitPeriod = splitInput[0].split(':')[1].split(' ')[1];
-      console.log('HOUR: ', splitHour);
-      console.log('MINUTE: ', splitMinutes);
-      console.log('DAY: ', splitDay);
-      console.log('PERIOD: ', splitPeriod);
       this.calculateTime(splitHour, splitMinutes, splitDay, splitPeriod);
     } else {
       console.log('invalid')
@@ -77,9 +74,3 @@ class App extends Component {
 }
 
 export default App;
-
-// ["12:00 PM, DAY 1",
-// "12:01 PM, DAY 1"]
-// => 241 (240.5 rounded)
-
-// Subtract 480 since race starts at 8:00 AM
