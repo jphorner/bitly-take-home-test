@@ -8,23 +8,39 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      test: 'Test'
+      times: []
     }
   }
 
   calculateTime = (hour, minutes, day, period) => {
-    let totalTime;
-    totalTime = minutes;
-    if (period === 'PM' && hour !== 12) {
-      let hourAdjusted = hour + 12;
-      console.log('Adjusted: ', hourAdjusted);
-      totalTime += (hourAdjusted * 60);
+    let totalTime = minutes;
+    if (period === 'AM' && day === 1) {
+      totalTime += (hour * 60);
+    } else if (period === 'PM' && day === 1) {
+      if (hour === 12) {
+        totalTime += (hour * 60);
+      } else {
+        totalTime += (hour + 12) * 60;
+      }
     };
-    if (day > 1) {
-      totalTime += ((24 * 60) * day);
+
+    if (period === 'AM' && day === 2) {
+      if (hour === 12) {
+        totalTime += (24 * 60);
+      } else {
+        totalTime += (24 * 60) + (hour * 60);
+      }
+    } else if (period === 'PM' && day === 2) {
+      if (hour === 12) {
+        totalTime += (36 * 60);
+      } else {
+        totalTime += (36 * 60) + (hour * 60);
+      }
     };
-    totalTime -= (8 * 60);
+
+    totalTime -= 480;
     console.log(totalTime);
+    this.setState({ times: totalTime })
   }
 
   submitTime = (event) => {
@@ -45,7 +61,6 @@ class App extends Component {
       console.log('invalid')
       return;
     };
-    this.setState({ test: 'Noice' })
   }
 
   render() {
@@ -54,7 +69,7 @@ class App extends Component {
         <div className="components-container">
           <Header />
           <Form submitTime={this.submitTime} />
-          <Results results={this.state.test}/>
+          <Results results={this.state.times}/>
         </div>
       </div>
     );
