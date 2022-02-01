@@ -1,0 +1,38 @@
+.form-container {
+  text-align: left;
+  padding: 3.7% 3.2% .8% 3.2%;
+  color: #35383B;
+}
+
+form {
+  height: 21.5vh;
+  display: block;
+  padding: .8vh 0vh .8vh 0vh;
+}
+
+.time-input {
+  height: 2.27rem;
+  width: 46%;
+  margin-right: 1rem;
+  border: 1px solid #D3D4D7;
+}
+
+.time-submit-btn {
+  color: white;
+  background-color: #2A5BD6;
+  border: 0px;
+  font-family: 'ProximaNova-Regular';
+  font-size: 1rem;
+  padding: .75rem 1.6rem .75rem 1.6rem;
+}
+
+.time-input,
+.time-submit-btn {
+  border-radius: 4px;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: #D3D4D7;
+}
