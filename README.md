@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Bitly Take-Home Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Overview
 
-## Available Scripts
+This app allows users to submit boat race times using the format ``HH:MM (AM/PM), DAY X``. On submission, the total race time is converted to minutes and displayed in list format. To the right of the individual race times, an average race time can be seen which is updated with each additional time submission.
 
-In the project directory, you can run:
+### Setup Instructions
 
-### `npm start`
+This project uses ``react``, ``react-dom``, and ``react-scripts`` as dependencies.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In your command line, navigate to a new folder, clone this repository, and navigate into the root directory:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+``git clone git@github.com:jphorner/bitly-take-home-test.git``
 
-### `npm test`
+``cd bitly-take-home-test``
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Once in the root directory, install the necessary dependencies then start the application:
 
-### `npm run build`
+``npm install``
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+``npm start``
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If done correctly, you should be able to view the app at ``localhost:3000``.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you do not have NPM installed on machine, [you can find setup instructions here.](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-### `npm run eject`
+## Demo
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Kapture 2022-02-02 at 13 11 00](https://user-images.githubusercontent.com/82003147/152229810-26f8851c-4f78-4d23-ac25-85fa1de96309.gif)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technologies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+|Development|Development|Design
+|--- |--- |--- |
+|[<img src="https://img.shields.io/badge/-react-blue" />](https://reactjs.org/)|[ <img src="https://img.shields.io/badge/-javascript-orange" />](https://www.javascript.com/)|[CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)|
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Development Timeline
 
-## Learn More
+#### Wireframing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Upon reviewing the project spec, I decided I would need four components:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- App (to render all components)
+- Header (static)
+- Form (for submitting times)
+- Results (to render times)
 
-### Code Splitting
+<img width="800" alt="Annotated Bitly Wireframe" src="https://user-images.githubusercontent.com/82003147/152231108-5628140d-4424-4aab-ac9d-a54fd7e59896.png">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Component Architecture
 
-### Analyzing the Bundle Size
+Before refactoring, the component architecture was planned to be rendered in the following order:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- ``index.js`` would render the App component, which would then render all other components
+- A static ``Header`` component would be rendered first
+- A ``Form`` component would then be rendered, which would hold all time submissions in state
+  - ``Form`` was later refactored as a functional component, with ``App`` holding all state data
+- A ``Results`` component would then be rendered, with time submissions being passed in as props from ``Form``
+  - This was also refactored so that times would be passed directly from ``App`` to ``Results``, eliminating the need for prop drilling
 
-### Making a Progressive Web App
+**Original Architecture Plan:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<img width="500" alt="Bitly Component Architecture" src="https://user-images.githubusercontent.com/82003147/152231196-74356a1b-ea3f-473a-9b87-22473163553b.png">
 
-### Advanced Configuration
+## Contributions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+|Joshua Horner
+|--- |
+|[<img src="https://img.shields.io/badge/GitHub-181717.svg?&style=flaste&logo=github&logoColor=white" />](https://github.com/jphorner)|
+|[<img src= "https://img.shields.io/badge/in-LinkedIn-blue" />](https://www.linkedin.com/in/joshuapaulhorner/)|[<img src= "https://img.shields.io/badge/in-LinkedIn-blue" />](https://www.linkedin.com/in/joshuapaulhorner/)
