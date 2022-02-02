@@ -1,7 +1,11 @@
 .results-container {
   position: relative;
   text-align: left;
+  height: 58%;
   padding: 3.5% 6% 3.5% 5.6%;
+  border: 1px solid #DDDEDE;
+  border-top: 0px;
+  overflow-y: hidden;
 }
 
 .results-header {
@@ -13,7 +17,8 @@
 }
 
 .individual-results-container {
-  max-height: 30vh;
+  max-height: 40vh;
+  width: 50%;
   overflow-y: scroll;
 }
 
@@ -25,4 +30,12 @@
   position: absolute;
   top: 0;
   right: 15%;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
 }
