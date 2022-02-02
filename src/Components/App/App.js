@@ -10,11 +10,12 @@ class App extends Component {
     this.state = {
       times: []
     }
-  }
+  };
 
   calculateTime = (hour, minutes, day, period) => {
     let totalTime = 0;
-
+      // Starts by counting hours, then is converted to minutes
+      // at the end of the function
     if (period === 'AM' && day === 1) {
       totalTime += hour;
     } else if (period === 'PM' && day === 1 && hour !== 12) {
@@ -22,7 +23,7 @@ class App extends Component {
     } else if (period === 'PM' && day === 1 && hour === 12) {
       totalTime += hour;
     };
-
+      // Ignores additional days if race finishes on day one
     if (period === 'AM' && day >= 2 && hour !== 12) {
       totalTime += 24 + hour;
     } else if (period === 'AM' && day >= 2 && hour === 12) {
@@ -32,15 +33,20 @@ class App extends Component {
     } else if (period === 'PM' && day >= 2 && hour !== 12) {
       totalTime += 36 + hour;
     };
-
+      // If day two or later, a full day is added to the total
+      // before final hours are added on the finishing day
     if (day > 2) {
       totalTime += 24 * (day - 2);
-    }
-
+    };
+      // Adds 24 hours for every day which passes between the
+      // starting and finishing day
     totalTime = totalTime * 60;
+      // Converts hours into minutes
     totalTime += minutes;
+      // Adds the minute value once hours have been converted
     totalTime -= 480;
-    console.log(totalTime);
+      // Subtracts eight hours' worth of minutes since race
+      // begins at 8:00 AM
     this.setState({ times: [...this.state.times, totalTime] })
   }
 
@@ -53,9 +59,9 @@ class App extends Component {
       let splitMinutes = parseInt(splitInput[0].split(':')[1].split(' ')[0]);
       let splitDay = parseInt(splitInput[1].split(' DAY ')[1]);
       let splitPeriod = splitInput[0].split(':')[1].split(' ')[1];
+        // Splits valid race time string into its constituent values for calculation
       this.calculateTime(splitHour, splitMinutes, splitDay, splitPeriod);
     } else {
-      console.log('invalid')
       return;
     };
   }
@@ -69,8 +75,8 @@ class App extends Component {
           <Results results={this.state.times}/>
         </div>
       </div>
-    );
+    )
   }
-}
+};
 
 export default App;

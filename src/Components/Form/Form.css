@@ -2,6 +2,8 @@
   text-align: left;
   padding: 3.7% 3.2% .8% 3.2%;
   color: #35383B;
+  border: 1px solid #DDDEDE;
+  border-bottom: 0px;
 }
 
 form {
